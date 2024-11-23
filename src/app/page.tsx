@@ -2,15 +2,42 @@ import { socials, tools } from '@/lib/definitions'
 import Image from 'next/image'
 import Me from '../../public/Me.png'
 import ThemeToggle from '@/components/theme-toggle'
-import { Mail, MapPin } from 'lucide-react'
+import { ArrowUpRight, Mail, MapPin } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import {
+    Tooltip,
+    TooltipProvider,
+    TooltipTrigger,
+} from '@/components/ui/tooltip'
+import { TooltipContent } from '@radix-ui/react-tooltip'
+
+const projects = [
+    {
+        name: 'Positive Media',
+        media: [
+            { image: '', alt: '' },
+            { image: '', alt: '' },
+            { image: '', alt: '' },
+        ],
+        url: 'https://positivemedia.com.au/',
+    },
+    {
+        name: 'Get The Memo',
+        media: [
+            { image: '', alt: '' },
+            { image: '', alt: '' },
+            { image: '', alt: '' },
+        ],
+        url: 'https://positivemedia.com.au/',
+    },
+]
 
 export default function Home() {
     return (
         <div className="flex justify-center">
             <section className="flex w-full max-w-[720px] py-16">
                 {/* Left */}
-                <div className="flex flex-col gap-16">
+                <div className="flex flex-col gap-16 sticky top-16 h-min">
                     {/* Me */}
                     <div className="flex flex-col gap-3 items-center">
                         <Image
@@ -24,21 +51,33 @@ export default function Home() {
                     {/* Me */}
                     <div className="flex flex-col gap-3 items-center">
                         <p className="text-xs">Socials</p>
-                        {socials.map((social) => (
-                            <a
-                                target="_blank"
-                                style={{
-                                    borderColor: social.border,
-                                    backgroundColor: social.background,
-                                }}
-                                href={social.url}
-                                className="p-3 rounded-full w-11 h-11 border"
-                            >
-                                {social.icon}
-                            </a>
-                        ))}
+                        <TooltipProvider delayDuration={0}>
+                            {socials.map((social, index) => (
+                                <Tooltip>
+                                    <TooltipTrigger
+                                        style={{
+                                            borderColor: social.border,
+                                            backgroundColor: social.background,
+                                        }}
+                                        className="p-3 rounded-full w-11 h-11 border"
+                                    >
+                                        <a
+                                            key={index}
+                                            target="_blank"
+                                            href={social.url}
+                                        >
+                                            {social.icon}
+                                        </a>
+                                    </TooltipTrigger>
+                                    <TooltipContent className="bg-500 text-background font-semibold py-1.5 px-3 rounded-full text-xs absolute left-8 translate-y-1/4">
+                                        <p>{social.name}</p>
+                                    </TooltipContent>
+                                </Tooltip>
+                            ))}
+                        </TooltipProvider>
                     </div>
                 </div>
+                {/* Middle */}
                 <div className="flex flex-col gap-16 w-full items-center pt-16">
                     {/* Intro */}
                     <div className="flex flex-col gap-6 items-center">
@@ -63,12 +102,47 @@ export default function Home() {
                             </a>
                         </div>
                     </div>
-                    <Button className="rounded-full text-sm h-11 px-6">
+                    {/* Consultation */}
+                    <Button className="rounded-full text-sm h-11 px-6 sticky top-16">
                         Free consultation
                     </Button>
+                    {/* Portfolio */}
+                    <div className="flex flex-col gap-11 w-full px-16">
+                        {/* Project */}
+                        {projects.map((project) => (
+                            <>
+                                <div className="flex flex-col gap-3 w-full">
+                                    {/* Heading */}
+                                    <div className="flex justify-between px-3 w-full">
+                                        <h2 className="text-sm font-semibold text-foreground">
+                                            {project.name}
+                                        </h2>
+                                        <a
+                                            href={project.url}
+                                            className="transition-all hover:text-foreground group flex items-center gap-1 text-sm text-500"
+                                        >
+                                            Visit
+                                            <ArrowUpRight
+                                                className="transition-transform group-hover:translate-x-[2px] group-hover:translate-y-[-2px]"
+                                                size={16}
+                                            />
+                                        </a>
+                                    </div>
+                                    <div className="flex flex-col gap-6">
+                                        {/* Images */}
+                                        {project.media.map(() => (
+                                            <div className="w-full aspect-video bg-200 rounded-[22px] border border-300"></div>
+                                        ))}
+                                    </div>
+                                </div>
+                                {/* Divider */}
+                                <div className="flex h-[1px] bg-200"></div>
+                            </>
+                        ))}
+                    </div>
                 </div>
                 {/* Right */}
-                <div className="flex flex-col gap-16">
+                <div className="flex flex-col gap-16 sticky top-16 h-min">
                     {/* Me */}
                     <div className="flex flex-col gap-3 items-center">
                         <ThemeToggle />
@@ -77,19 +151,30 @@ export default function Home() {
                     {/* Me */}
                     <div className="flex flex-col gap-3 items-center">
                         <p className="text-xs">Tools</p>
-                        {tools.map((tool) => (
-                            <a
-                                target="_blank"
-                                style={{
-                                    borderColor: tool.border,
-                                    backgroundColor: tool.background,
-                                }}
-                                href={tool.url}
-                                className="p-3 rounded-full w-11 h-11 border"
-                            >
-                                {tool.icon}
-                            </a>
-                        ))}
+                        <TooltipProvider delayDuration={0}>
+                            {tools.map((tool, index) => (
+                                <Tooltip>
+                                    <TooltipTrigger
+                                        style={{
+                                            borderColor: tool.border,
+                                            backgroundColor: tool.background,
+                                        }}
+                                        className="p-3 rounded-full w-11 h-11 border"
+                                    >
+                                        <a
+                                            key={index}
+                                            target="_blank"
+                                            href={tool.url}
+                                        >
+                                            {tool.icon}
+                                        </a>
+                                    </TooltipTrigger>
+                                    <TooltipContent className="bg-500 text-background font-semibold py-1.5 px-3 rounded-full text-xs absolute right-8 translate-y-1/4">
+                                        <p>{tool.name}</p>
+                                    </TooltipContent>
+                                </Tooltip>
+                            ))}
+                        </TooltipProvider>
                     </div>
                 </div>
             </section>
