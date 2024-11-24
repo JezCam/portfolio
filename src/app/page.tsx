@@ -7,7 +7,7 @@ import ThemeToggle from '@/components/theme-toggle'
 import { ArrowUpRight, Mail, MapPin } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import MagneticButtons from '@/components/magnetic-buttons'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 const projects = [
     {
@@ -34,13 +34,14 @@ export default function Home() {
     const introRef = useRef<HTMLDivElement>(null)
     const [above, setAbove] = useState<boolean>(false)
 
-    typeof window !== undefined &&
+    useEffect(() => {
         window.addEventListener('scroll', () => {
             if (!introRef.current) return
             introRef.current.getBoundingClientRect().bottom < 0
                 ? setAbove(true)
                 : setAbove(false)
         })
+    })
 
     return (
         <div className="flex justify-center">
