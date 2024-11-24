@@ -34,16 +34,17 @@ export default function Home() {
     const introRef = useRef<HTMLDivElement>(null)
     const [above, setAbove] = useState<boolean>(false)
 
-    window.addEventListener('scroll', () => {
-        if (!introRef.current) return
-        introRef.current.getBoundingClientRect().bottom < 0
-            ? setAbove(true)
-            : setAbove(false)
-    })
+    window &&
+        window.addEventListener('scroll', () => {
+            if (!introRef.current) return
+            introRef.current.getBoundingClientRect().bottom < 0
+                ? setAbove(true)
+                : setAbove(false)
+        })
 
     return (
         <div className="flex justify-center">
-            <section className="flex w-full max-w-[720px] py-16">
+            <section className="flex w-full max-w-[720px] py-16 px-8">
                 {/* Left */}
                 <div className="flex flex-col gap-16 sticky top-16 h-min">
                     {/* Me */}
