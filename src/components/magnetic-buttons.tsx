@@ -45,6 +45,8 @@ export default function MagneticButtons(props: {
                 {/* Tooltip */}
                 <div
                     style={{
+                        left: props.direction === 'left' ? '64px' : '',
+                        right: props.direction === 'right' ? '64px' : '',
                         clipPath: `inset(${
                             (100 / props.data.length) * (hoverDataIndex - 1) + 4
                         }% ${
@@ -59,14 +61,18 @@ export default function MagneticButtons(props: {
                                 : 2
                         }px round 999px)`,
                     }}
-                    className={`flex flex-col absolute ${props.direction}-16 top-0 bg-500 transition-all duration-300 opacity-0 group-hover:opacity-100`}
+                    className="flex flex-col absolute top-0 bg-500 transition-all duration-300 opacity-0 group-hover:opacity-100"
                 >
                     {props.data.map((data, index) => (
                         <div
                             key={index}
-                            className={`flex items-center self-${
-                                props.direction === 'left' ? 'start' : 'end'
-                            } text-xs h-11 m-1.5 p-1.5 text-background font-semibold w-min`}
+                            style={{
+                                alignSelf:
+                                    props.direction === 'left'
+                                        ? 'start'
+                                        : 'end',
+                            }}
+                            className="flex items-center text-xs h-11 m-1.5 p-1.5 text-background font-semibold w-min"
                         >
                             {data.name}
                         </div>
