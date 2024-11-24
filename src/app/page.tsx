@@ -1,15 +1,13 @@
+'use client'
+
 import { socials, tools } from '@/lib/definitions'
 import Image from 'next/image'
 import Me from '../../public/Me.png'
 import ThemeToggle from '@/components/theme-toggle'
 import { ArrowUpRight, Mail, MapPin } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import {
-    Tooltip,
-    TooltipProvider,
-    TooltipTrigger,
-} from '@/components/ui/tooltip'
-import { TooltipContent } from '@radix-ui/react-tooltip'
+import MagneticButtons from '@/components/magnetic-buttons'
+import { useRef, useState } from 'react'
 
 const projects = [
     {
@@ -33,6 +31,16 @@ const projects = [
 ]
 
 export default function Home() {
+    const introRef = useRef<HTMLDivElement>(null)
+    const [above, setAbove] = useState<boolean>(false)
+
+    window.addEventListener('scroll', () => {
+        if (!introRef.current) return
+        introRef.current.getBoundingClientRect().bottom < 0
+            ? setAbove(true)
+            : setAbove(false)
+    })
+
     return (
         <div className="flex justify-center">
             <section className="flex w-full max-w-[720px] py-16">
@@ -49,38 +57,18 @@ export default function Home() {
                         <p className="text-xs">Me</p>
                     </div>
                     {/* Me */}
-                    <div className="flex flex-col gap-3 items-center">
+                    <div className="flex flex-col gap-1.5 items-center">
                         <p className="text-xs">Socials</p>
-                        <TooltipProvider delayDuration={0}>
-                            {socials.map((social, index) => (
-                                <Tooltip>
-                                    <TooltipTrigger
-                                        style={{
-                                            borderColor: social.border,
-                                            backgroundColor: social.background,
-                                        }}
-                                        className="p-3 rounded-full w-11 h-11 border"
-                                    >
-                                        <a
-                                            key={index}
-                                            target="_blank"
-                                            href={social.url}
-                                        >
-                                            {social.icon}
-                                        </a>
-                                    </TooltipTrigger>
-                                    <TooltipContent className="bg-500 text-background font-semibold py-1.5 px-3 rounded-full text-xs absolute left-8 translate-y-1/4">
-                                        <p>{social.name}</p>
-                                    </TooltipContent>
-                                </Tooltip>
-                            ))}
-                        </TooltipProvider>
+                        <MagneticButtons data={socials} direction="left" />
                     </div>
                 </div>
                 {/* Middle */}
-                <div className="flex flex-col gap-16 w-full items-center pt-16">
+                <div className="flex flex-col gap-16 w-full items-center pt-16 px-16">
                     {/* Intro */}
-                    <div className="flex flex-col gap-6 items-center">
+                    <div
+                        ref={introRef}
+                        className="flex flex-col gap-6 items-center"
+                    >
                         <h1 className="font-semibold text-foreground">
                             Jeremy Cameron.{' '}
                             <span className="text-500">Design Engineer.</span>
@@ -94,7 +82,7 @@ export default function Home() {
                                 </span>
                             </div>
                             <a
-                                className="flex items-center gap-1.5 underline"
+                                className="flex items-center gap-1.5 underline hover:text-foreground transition-colors"
                                 href="mailto:jeremy@cameron.org.au"
                             >
                                 <Mail className="text-foreground" size={14} />
@@ -103,11 +91,17 @@ export default function Home() {
                         </div>
                     </div>
                     {/* Consultation */}
-                    <Button className="rounded-full text-sm h-11 px-6 sticky top-16">
+
+                    <Button
+                        className={`transition-all interpolate-size w-min [interpolate-size:allow-keywords] duration-500 [transition-timing-function:cubic-bezier(0.32,0,0.67,0)] ${
+                            above && 'w-full'
+                        } rounded-full text-sm h-11 px-6 sticky top-16`}
+                    >
                         Free consultation
                     </Button>
+
                     {/* Portfolio */}
-                    <div className="flex flex-col gap-11 w-full px-16">
+                    <div className="flex flex-col gap-11 w-full">
                         {/* Project */}
                         {projects.map((project) => (
                             <>
@@ -149,32 +143,9 @@ export default function Home() {
                         <p className="text-xs">Theme</p>
                     </div>
                     {/* Me */}
-                    <div className="flex flex-col gap-3 items-center">
+                    <div className="flex flex-col gap-1.5 items-center">
                         <p className="text-xs">Tools</p>
-                        <TooltipProvider delayDuration={0}>
-                            {tools.map((tool, index) => (
-                                <Tooltip>
-                                    <TooltipTrigger
-                                        style={{
-                                            borderColor: tool.border,
-                                            backgroundColor: tool.background,
-                                        }}
-                                        className="p-3 rounded-full w-11 h-11 border"
-                                    >
-                                        <a
-                                            key={index}
-                                            target="_blank"
-                                            href={tool.url}
-                                        >
-                                            {tool.icon}
-                                        </a>
-                                    </TooltipTrigger>
-                                    <TooltipContent className="bg-500 text-background font-semibold py-1.5 px-3 rounded-full text-xs absolute right-8 translate-y-1/4">
-                                        <p>{tool.name}</p>
-                                    </TooltipContent>
-                                </Tooltip>
-                            ))}
-                        </TooltipProvider>
+                        <MagneticButtons data={tools} direction="right" />
                     </div>
                 </div>
             </section>

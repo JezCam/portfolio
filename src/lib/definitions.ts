@@ -16,6 +16,7 @@ export const socials = [
     {
         icon: X('var(--500)'),
         name: 'X',
+        size: 19.2,
         border: 'var(--400)',
         background: 'var(--200)',
         url: 'https://x.com/jeremycameron',
@@ -23,6 +24,7 @@ export const socials = [
     {
         icon: Linkedin,
         name: 'LinkedIn',
+        size: 69.61,
         border: 'rgba(10,102,194,1)',
         background: 'rgba(10,102,194,.1)',
         url: 'https://www.linkedin.com/in/jeremy-cameron-28559a153/',
@@ -30,6 +32,7 @@ export const socials = [
     {
         icon: Github('var(--500)'),
         name: 'GitHub',
+        size: 55.2,
         border: 'var(--400)',
         background: 'var(--200)',
         url: 'https://github.com/JezCam',
@@ -37,6 +40,7 @@ export const socials = [
     {
         icon: Youtube,
         name: 'Youtube',
+        size: 62.41,
         border: 'rgba(255,3,2,1)',
         background: 'rgba(255,3,2,.1)',
         url: 'https://www.youtube.com/@jeremycameroncom',
@@ -44,6 +48,7 @@ export const socials = [
     {
         icon: Instagram('var(--500)'),
         name: 'Instagram',
+        size: 76.81,
         border: 'var(--400)',
         background: 'var(--200)',
         url: 'https://www.instagram.com/jeremycameroncom/',
@@ -51,6 +56,7 @@ export const socials = [
     {
         icon: Discord,
         name: 'Discord',
+        size: 62.41,
         border: 'rgba(88,101,242,1)',
         background: 'rgba(88,101,242,.1)',
         url: 'https://x.com/jeremycameron',
@@ -61,6 +67,7 @@ export const tools = [
     {
         icon: Nextjs('var(--500)'),
         name: 'NextJS',
+        size: 55.2,
         border: 'var(--400)',
         background: 'var(--200)',
         url: 'https://nextjs.org/',
@@ -68,6 +75,7 @@ export const tools = [
     {
         icon: ReactIcon,
         name: 'React',
+        size: 48,
         border: 'rgba(97,218,251,1)',
         background: 'rgba(97,218,251,.1)',
         url: 'https://react.dev/',
@@ -75,6 +83,7 @@ export const tools = [
     {
         icon: Typescript,
         name: 'Typescript',
+        size: 84,
         border: 'rgba(49,120,198,1)',
         background: 'rgba(49,120,198,.1)',
         url: 'https://www.typescriptlang.org/',
@@ -82,6 +91,7 @@ export const tools = [
     {
         icon: Illustrator,
         name: 'Illustrator',
+        size: 91.2,
         border: 'rgba(255,154,0,1)',
         background: 'rgba(255,154,0,.1)',
         url: 'https://www.adobe.com/au/products/illustrator.html',
@@ -89,6 +99,7 @@ export const tools = [
     {
         icon: Figma,
         name: 'Figma',
+        size: 48,
         border: 'rgba(162,89,255,1)',
         background: 'rgba(162,89,255,.1)',
         url: 'https://www.figma.com/',
@@ -96,6 +107,7 @@ export const tools = [
     {
         icon: Framer,
         name: 'Framer',
+        size: 55.2,
         border: 'rgba(1,163,255,1)',
         background: 'rgba(1,163,255,.1)',
         url: 'https://www.framer.com/',
