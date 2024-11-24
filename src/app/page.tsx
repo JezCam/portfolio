@@ -34,7 +34,7 @@ export default function Home() {
     const introRef = useRef<HTMLDivElement>(null)
     const [above, setAbove] = useState<boolean>(false)
 
-    window &&
+    typeof window !== undefined &&
         window.addEventListener('scroll', () => {
             if (!introRef.current) return
             introRef.current.getBoundingClientRect().bottom < 0
