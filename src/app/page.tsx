@@ -156,11 +156,12 @@ export default function Home() {
                                 <div
                                     style={
                                         {
+                                            zIndex: projects.length - index,
                                             '--mobile-top':
                                                 (100 + index * 41).toString() +
                                                 'px',
                                             '--desktop-top':
-                                                (172 + index * 45).toString() +
+                                                (170 + index * 43).toString() +
                                                 'px',
                                         } as React.CSSProperties
                                     }
