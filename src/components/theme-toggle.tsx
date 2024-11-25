@@ -159,10 +159,15 @@ export default function ThemeToggle() {
                             xmlns="http://www.w3.org/2000/svg"
                             animate={controls}
                             variants={{
-                                '0': { rotate: 0, scale: 1 },
-                                '0hover': { rotate: 0, scale: 1 },
-                                '1': { rotate: 0, scale: 1 },
-                                '1hover': { rotate: -15, scale: 0.85 },
+                                '0': { rotate: 0, scale: 1, y: 0, x: 0 },
+                                '0hover': { rotate: 0, scale: 1, y: 0, x: 0 },
+                                '1': { rotate: 0, scale: 1, y: 1, x: 1 },
+                                '1hover': {
+                                    rotate: -15,
+                                    scale: 0.85,
+                                    y: 1,
+                                    x: 1,
+                                },
                             }}
                             transition={{
                                 duration: 0.2,
