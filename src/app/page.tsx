@@ -151,7 +151,7 @@ export default function Home() {
                     <div className="flex flex-col gap-4 md:gap-6 w-full relative">
                         {/* Project */}
                         {projects.map((project, index) => (
-                            <React.Fragment>
+                            <React.Fragment key={index}>
                                 {/* Heading */}
                                 <div
                                     style={
