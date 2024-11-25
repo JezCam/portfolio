@@ -164,7 +164,7 @@ export default function Home() {
                                                 'px',
                                         } as React.CSSProperties
                                     }
-                                    className="flex justify-between p-3 border-b-[1px] w-full bg-background sticky top-[var(--mobile-top)] md:top-[var(--desktop-top)]"
+                                    className="flex justify-between p-3 border-b-[1px] border-300 w-full bg-background sticky top-[var(--mobile-top)] md:top-[var(--desktop-top)]"
                                 >
                                     <a
                                         href={`#${project.name}`}
@@ -224,7 +224,7 @@ export default function Home() {
                                         <div className="flex gap-2 h-min">
                                             {project.tools?.map((tool) => (
                                                 <Tooltip>
-                                                    <TooltipTrigger className="w-4 h-4 md:w-5 md:h-5 rounded-full overflow-hidden bg-100">
+                                                    <TooltipTrigger className="w-4 h-4 md:w-5 md:h-5 overflow-hidden">
                                                         <a href={tool.url}>
                                                             <Image
                                                                 src={tool.icon}
