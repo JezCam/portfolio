@@ -144,7 +144,7 @@ export default function ThemeToggle() {
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                     onClick={handleClick}
-                    className="rounded-full w-11 h-11 [&_svg]:size-5"
+                    className="rounded-full w-9 h-9 md:w-11 md:h-11 [&_svg]:size-4 md:[&_svg]:size-5"
                     variant="outline"
                     size="icon"
                     ref={ref}
@@ -156,7 +156,6 @@ export default function ThemeToggle() {
                             strokeLinecap="round"
                             strokeLinejoin="round"
                             viewBox="0 0 22 22"
-                            width={22}
                             xmlns="http://www.w3.org/2000/svg"
                             animate={controls}
                             variants={{

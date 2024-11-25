@@ -45,17 +45,18 @@ export default function Home() {
 
     return (
         <div className="flex justify-center">
-            <section className="flex w-full max-w-[720px] py-16 px-8">
+            <section className="flex w-full max-w-[720px] py-8 md:py-16 px-3 md:px-8">
                 {/* Left */}
-                <div className="flex flex-col gap-16 sticky top-16 h-min">
+                <div className="flex flex-col gap-11 md:gap-16 sticky top-8 md:top-16 h-min">
                     {/* Me */}
                     <div className="flex flex-col gap-3 items-center">
-                        <Image
-                            className="rounded-full w-11 h-11 border-2 border-foreground"
-                            src={Me}
-                            alt="Jeremy Cameron"
-                            objectFit="cover"
-                        />
+                        <div className="flex items-center justify-center rounded-full w-9 md:w-11 aspect-square border-2 border-foreground overflow-hidden">
+                            <Image
+                                className="min-w-[42px] md:min-w-[42px]"
+                                src={Me}
+                                alt="Jeremy Cameron"
+                            />
+                        </div>
                         <p className="text-xs">Me</p>
                     </div>
                     {/* Socials */}
@@ -65,16 +66,18 @@ export default function Home() {
                     </div>
                 </div>
                 {/* Middle */}
-                <div className="flex flex-col gap-16 w-full items-center pt-16 px-16">
+                <div className="flex flex-col gap-16 w-full items-center pt-16 px-3 md:px-16">
                     {/* Intro */}
                     <div
                         ref={introRef}
                         className="flex flex-col gap-6 items-center"
                     >
-                        <h1 className="font-semibold text-foreground">
-                            Jeremy Cameron.{' '}
-                            <span className="text-500">Design Engineer.</span>
-                        </h1>
+                        <div className="flex md:gap-2 flex-col md:flex-row items-center">
+                            <h1 className="font-semibold text-foreground">
+                                Jeremy Cameron.
+                            </h1>
+                            <h1 className="text-500">Design Engineer.</h1>
+                        </div>
                         <div className="flex flex-col gap-1.5 items-center text-500 text-sm">
                             <div className="flex items-center gap-1.5">
                                 <MapPin className="text-foreground" size={14} />
@@ -97,7 +100,7 @@ export default function Home() {
                     <Button
                         className={`transition-all interpolate-size w-min [interpolate-size:allow-keywords] duration-500 [transition-timing-function:cubic-bezier(0.32,0,0.67,0)] ${
                             above && 'w-full'
-                        } rounded-full text-sm h-11 px-6 sticky top-16`}
+                        } rounded-full text-xs md:text-sm h-9 md:h-11 px-6 sticky top-8 md:top-16`}
                     >
                         Free consultation
                     </Button>
@@ -124,7 +127,7 @@ export default function Home() {
                                             />
                                         </a>
                                     </div>
-                                    <div className="flex flex-col gap-6">
+                                    <div className="flex flex-col gap-5 md:gap-6">
                                         {/* Images */}
                                         {project.media.map(() => (
                                             <div className="w-full aspect-video bg-200 rounded-[22px] border border-300"></div>
@@ -138,7 +141,7 @@ export default function Home() {
                     </div>
                 </div>
                 {/* Right */}
-                <div className="flex flex-col gap-16 sticky top-16 h-min">
+                <div className="flex flex-col gap-11 md:gap-16 sticky top-8 md:top-16 h-min">
                     {/* Theme */}
                     <div className="flex flex-col gap-3 items-center">
                         <ThemeToggle />

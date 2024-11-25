@@ -40,7 +40,7 @@ export default function MagneticButtons(props: {
                         {/* Button */}
                         <a
                             onMouseOver={() => setHoverDataIndex(index + 1)}
-                            className="p-1.5 opacity-80 hover:opacity-100 transition-all"
+                            className="p-1.5"
                             key={index}
                             target="_blank"
                             href={data.url}
@@ -50,7 +50,7 @@ export default function MagneticButtons(props: {
                                     borderColor: data.border,
                                     backgroundColor: data.background,
                                 }}
-                                className="p-3 rounded-full w-11 h-11 border"
+                                className="rounded-full flex items-center justify-center w-9 h-9 md:w-11 md:h-11 [&_svg]:size-4 md:[&_svg]:size-5 border"
                             >
                                 {data.icon}
                             </div>
@@ -87,7 +87,7 @@ export default function MagneticButtons(props: {
                                         ? 'start'
                                         : 'end',
                             }}
-                            className="flex items-center text-xs h-11 m-1.5 p-1.5 text-foreground font-semibold w-min"
+                            className="flex items-center text-xs h-9 md:h-11 m-1.5 p-1.5 text-foreground font-semibold w-min"
                         >
                             {data.name}
                         </div>
