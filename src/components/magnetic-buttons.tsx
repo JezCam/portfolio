@@ -76,7 +76,7 @@ export default function MagneticButtons(props: {
                                 : 2
                         }px round 999px)`,
                     }}
-                    className="flex flex-col absolute top-0 bg-300 transition-all duration-300 opacity-0 group-hover:opacity-100"
+                    className="flex flex-col absolute top-0 bg-300 transition-all duration-300 opacity-0 group-hover:opacity-100 pointer-events-none"
                 >
                     {props.data.map((data, index) => (
                         <div
