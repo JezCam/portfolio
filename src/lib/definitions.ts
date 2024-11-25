@@ -14,11 +14,11 @@ import { Framer } from '@/components/tools/framer'
 
 export const socials = [
     {
-        icon: X('var(--500)'),
+        icon: X('var(--600)'),
         name: 'X',
         size: 19.2,
         border: 'var(--400)',
-        background: 'var(--200)',
+        background: 'var(--600-10)',
         url: 'https://x.com/jeremycameron',
     },
     {
@@ -30,11 +30,11 @@ export const socials = [
         url: 'https://www.linkedin.com/in/jeremy-cameron-28559a153/',
     },
     {
-        icon: Github('var(--500)'),
+        icon: Github('var(--600)'),
         name: 'GitHub',
         size: 55.2,
         border: 'var(--400)',
-        background: 'var(--200)',
+        background: 'var(--600-10)',
         url: 'https://github.com/JezCam',
     },
     {
@@ -46,11 +46,11 @@ export const socials = [
         url: 'https://www.youtube.com/@jeremycameroncom',
     },
     {
-        icon: Instagram('var(--500)'),
+        icon: Instagram('var(--600)'),
         name: 'Instagram',
         size: 76.81,
         border: 'var(--400)',
-        background: 'var(--200)',
+        background: 'var(--600-10)',
         url: 'https://www.instagram.com/jeremycameroncom/',
     },
     {
@@ -65,11 +65,11 @@ export const socials = [
 
 export const tools = [
     {
-        icon: Nextjs('var(--500)'),
+        icon: Nextjs('var(--600)'),
         name: 'NextJS',
         size: 55.2,
         border: 'var(--400)',
-        background: 'var(--200)',
+        background: 'var(--600-10)',
         url: 'https://nextjs.org/',
     },
     {

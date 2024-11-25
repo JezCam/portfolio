@@ -151,7 +151,7 @@ export default function ThemeToggle() {
                 >
                     {resolvedTheme && (
                         <motion.svg
-                            stroke="hsl(var(--foreground))"
+                            stroke="var(--600)"
                             strokeWidth="2"
                             strokeLinecap="round"
                             strokeLinejoin="round"
@@ -176,7 +176,7 @@ export default function ThemeToggle() {
                         >
                             {/* sun and moon body */}
                             <motion.path
-                                stroke="hsl(var(--foreground))"
+                                stroke="var(--600)"
                                 fill="none"
                                 d={path}
                                 animate={controls}
