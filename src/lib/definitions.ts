@@ -1,3 +1,4 @@
+// Socials
 import { X } from '@/components/socials/x'
 import { Linkedin } from '@/components/socials/linkedin'
 import { Github } from '@/components/socials/github'
@@ -5,12 +6,31 @@ import { Youtube } from '@/components/socials/youtube'
 import { Instagram } from '@/components/socials/instagram'
 import { Discord } from '@/components/socials/discord'
 
+// Tools
 import { Nextjs } from '@/components/tools/nextjs'
 import { ReactIcon } from '@/components/tools/react'
 import { Typescript } from '@/components/tools/typescript'
 import { Illustrator } from '@/components/tools/illustrator'
 import { Figma } from '@/components/tools/figma'
 import { Framer } from '@/components/tools/framer'
+
+// Tools
+import FigmaIcon from '../../public/tools/figma.svg'
+import WordpressIcon from '../../public/tools/WordPress_blue_logo.svg'
+import BricksIcon from '../../public/tools/bricks-logo.svg'
+import NextJSIcon from '../../public/tools/nextjs.svg'
+import React from '../../public/tools/react.svg'
+import TypescriptIcon from '../../public/tools/typescript.svg'
+
+// Positive Media
+import ErrorPage from '../../public/positive media/404.png'
+import AllPage from '../../public/positive media/all.png'
+import HomePage from '../../public/positive media/home.png'
+
+// Get The Memo
+import One from '../../public/get the memo/1.png'
+import Two from '../../public/get the memo/2.png'
+import Three from '../../public/get the memo/3.png'
 
 export const socials = [
     {
@@ -111,5 +131,77 @@ export const tools = [
         border: 'rgba(1,163,255,1)',
         background: 'rgba(1,163,255,.1)',
         url: 'https://www.framer.com/',
+    },
+]
+
+export const projects = [
+    {
+        name: 'Positive Media',
+        media: [
+            { image: HomePage, alt: 'Positive Media Homepage' },
+            { image: AllPage, alt: 'Positive Media Pages Showcase' },
+            { image: ErrorPage, alt: 'Positive Media Error Page' },
+        ],
+        types: [
+            { name: 'UI/UX', background: 'rgba(37,99,235,.15)' },
+            { name: 'Development', background: 'rgba(220,38,38,.15)' },
+        ],
+        tools: [
+            {
+                icon: FigmaIcon,
+                name: 'Figma',
+                url: 'https://figma.com/',
+            },
+            {
+                icon: WordpressIcon,
+                name: 'Wordpress',
+                url: 'https://wordpress.org/',
+            },
+            {
+                icon: BricksIcon,
+                name: 'Bricks Builder',
+                url: 'https://bricksbuilder.io/',
+            },
+        ],
+        url: 'https://positivemedia.com.au/',
+    },
+    {
+        name: 'Get The Memo',
+        media: [
+            { image: One, alt: 'Get The Memo Dark' },
+            { image: Two, alt: 'Get The Memo Light' },
+            { image: Three, alt: 'Get The Memo Letters' },
+        ],
+        types: [
+            { name: 'UI/UX', background: 'rgba(37,99,235,.15)' },
+            { name: 'Development', background: 'rgba(220,38,38,.15)' },
+        ],
+        tools: [
+            {
+                icon: TypescriptIcon,
+                name: 'Typescript',
+                url: 'https://www.typescriptlang.org/',
+            },
+            {
+                icon: React,
+                name: 'Wordpress',
+                url: 'https://react.dev/',
+            },
+            {
+                icon: NextJSIcon,
+                name: 'NextJS',
+                url: 'https://nextjs.org/',
+            },
+        ],
+        url: 'https://getthememo.app/memo',
+    },
+    {
+        name: 'Mustard Leadership',
+        media: [
+            { image: '', alt: '' },
+            { image: '', alt: '' },
+            { image: '', alt: '' },
+        ],
+        url: 'https://positivemedia.com.au/',
     },
 ]

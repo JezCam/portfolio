@@ -1,76 +1,19 @@
 'use client'
 
-import { socials, tools } from '@/lib/definitions'
+import { socials, tools, projects } from '@/lib/definitions'
 import Image from 'next/image'
 import Me from '../../public/Me.png'
 import ThemeToggle from '@/components/theme-toggle'
 import { ArrowUpRight, Mail, MapPin } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import MagneticButtons from '@/components/magnetic-buttons'
-import { useEffect, useRef, useState } from 'react'
-
-// Tools
-import Wordpress from '../../public/tools/WordPress_blue_logo.svg'
-import Bricks from '../../public/tools/bricks-logo.svg'
-import Figma from '../../public/tools/figma.svg'
+import React, { useEffect, useRef, useState } from 'react'
 import {
     TooltipProvider,
     Tooltip,
     TooltipContent,
     TooltipTrigger,
 } from '@/components/ui/tooltip'
-import React from 'react'
-
-const projects = [
-    {
-        name: 'Positive Media',
-        media: [
-            { image: '', alt: '' },
-            { image: '', alt: '' },
-            { image: '', alt: '' },
-        ],
-        types: [
-            { name: 'UI/UX', background: 'rgba(37,99,235,.15)' },
-            { name: 'Development', background: 'rgba(220,38,38,.15)' },
-        ],
-        tools: [
-            {
-                icon: Figma,
-                name: 'Figma',
-                url: 'https://figma.com/',
-            },
-            {
-                icon: Wordpress,
-                name: 'Wordpress',
-                url: 'https://wordpress.org/',
-            },
-            {
-                icon: Bricks,
-                name: 'Bricks Builder',
-                url: 'https://bricksbuilder.io/',
-            },
-        ],
-        url: 'https://positivemedia.com.au/',
-    },
-    {
-        name: 'Get The Memo',
-        media: [
-            { image: '', alt: '' },
-            { image: '', alt: '' },
-            { image: '', alt: '' },
-        ],
-        url: 'https://positivemedia.com.au/',
-    },
-    {
-        name: 'Mustard Leadership',
-        media: [
-            { image: '', alt: '' },
-            { image: '', alt: '' },
-            { image: '', alt: '' },
-        ],
-        url: 'https://positivemedia.com.au/',
-    },
-]
 
 export default function Home() {
     const introRef = useRef<HTMLDivElement>(null)
@@ -174,6 +117,7 @@ export default function Home() {
                                         {project.name}
                                     </a>
                                     <a
+                                        target="_blank"
                                         href={project.url}
                                         className="transition-all hover:text-foreground group flex items-center gap-1 text-xs md:text-sm text-500"
                                     >
@@ -202,8 +146,13 @@ export default function Home() {
                                         className="absolute top-[var(--mobile-top)] md:top-[var(--desktop-top)]"
                                     ></div>
                                     {/* Images */}
-                                    {project.media.map(() => (
-                                        <div className="w-full aspect-video bg-200 rounded-[16px] md:rounded-[22px] border border-300"></div>
+                                    {project.media.map((media) => (
+                                        <div className="w-full aspect-video rounded-[16px] md:rounded-[22px] border border-300 overflow-hidden">
+                                            <Image
+                                                src={media.image}
+                                                alt={media.alt}
+                                            />
+                                        </div>
                                     ))}
                                 </div>
                                 {/* Heading */}
