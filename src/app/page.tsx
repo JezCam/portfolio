@@ -87,7 +87,7 @@ export default function Home() {
 
     return (
         <div className="flex justify-center">
-            <section className="flex w-full max-w-[720px] py-8 md:py-16 px-3 md:px-8">
+            <section className="flex w-full max-w-[1080px] py-8 md:py-16 px-3 md:px-8">
                 {/* Left */}
                 <div className="flex flex-col gap-11 md:gap-16 sticky top-8 md:top-16 h-min z-10">
                     {/* Me */}
