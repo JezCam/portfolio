@@ -58,7 +58,7 @@ export default function Home() {
                         />
                         <p className="text-xs">Me</p>
                     </div>
-                    {/* Me */}
+                    {/* Socials */}
                     <div className="flex flex-col gap-1.5 items-center">
                         <p className="text-xs">Socials</p>
                         <MagneticButtons data={socials} direction="left" />
@@ -139,12 +139,12 @@ export default function Home() {
                 </div>
                 {/* Right */}
                 <div className="flex flex-col gap-16 sticky top-16 h-min">
-                    {/* Me */}
+                    {/* Theme */}
                     <div className="flex flex-col gap-3 items-center">
                         <ThemeToggle />
                         <p className="text-xs">Theme</p>
                     </div>
-                    {/* Me */}
+                    {/* Tools */}
                     <div className="flex flex-col gap-1.5 items-center">
                         <p className="text-xs">Tools</p>
                         <MagneticButtons data={tools} direction="right" />

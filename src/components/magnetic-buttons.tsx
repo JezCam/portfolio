@@ -18,14 +18,29 @@ export default function MagneticButtons(props: {
     return (
         <nav>
             <ul
-                className={`group relative flex flex-col text-primary/70 transition-all after:point before:duration-300 before:pointer-events-none before:fixed before:left-[anchor(--anchor_left)] before:top-[anchor(--anchor_top)] before:z-[-1] before:h-[anchor-size(--anchor_height)] before:w-[anchor-size(--anchor_width)] before:rounded-full before:bg-primary/10 before:transition-all before:content-[""] [&:has(a:is(:focus-visible,:hover))]:[--intent:1] [&:has(a:target:is(:focus-visible,:hover))::after]:text-primary`}
+                className={
+                    props.direction === 'left'
+                        ? 'group relative flex flex-col text-primary/70 transition-all after:point before:duration-300 before:pointer-events-none before:fixed before:left-[anchor(--anchor-left_left)] before:top-[anchor(--anchor-left_top)] before:z-[-1] before:h-[anchor-size(--anchor-left_height)] before:w-[anchor-size(--anchor-left_width)] before:rounded-full before:bg-300 before:transition-all before:content-[""] [&:has(a:is(:focus-visible,:hover))]:[--intent:1] [&:has(a:target:is(:focus-visible,:hover))::after]:text-primary'
+                        : 'group relative flex flex-col text-primary/70 transition-all after:point before:duration-300 before:pointer-events-none before:fixed before:left-[anchor(--anchor-right_left)] before:top-[anchor(--anchor-right_top)] before:z-[-1] before:h-[anchor-size(--anchor-right_height)] before:w-[anchor-size(--anchor-right_width)] before:rounded-full before:bg-300 before:transition-all before:content-[""] [&:has(a:is(:focus-visible,:hover))]:[--intent:1] [&:has(a:target:is(:focus-visible,:hover))::after]:text-primary'
+                }
             >
                 {props.data.map((data, index) => (
-                    <li className="peer flex [&:has(a:is(:hover,:focus-visible))]:[anchor-name:--anchor] relative">
+                    <li
+                        style={
+                            {
+                                '--direction': props.direction,
+                            } as React.CSSProperties
+                        }
+                        className={
+                            props.direction === 'left'
+                                ? 'peer flex [&:has(a:is(:hover,:focus-visible))]:[anchor-name:--anchor-left] relative'
+                                : 'peer flex [&:has(a:is(:hover,:focus-visible))]:[anchor-name:--anchor-right] relative'
+                        }
+                    >
                         {/* Button */}
                         <a
                             onMouseOver={() => setHoverDataIndex(index + 1)}
-                            className="p-1.5"
+                            className="p-1.5 opacity-80 hover:opacity-100 transition-all"
                             key={index}
                             target="_blank"
                             href={data.url}
@@ -61,7 +76,7 @@ export default function MagneticButtons(props: {
                                 : 2
                         }px round 999px)`,
                     }}
-                    className="flex flex-col absolute top-0 bg-500 transition-all duration-300 opacity-0 group-hover:opacity-100"
+                    className="flex flex-col absolute top-0 bg-300 transition-all duration-300 opacity-0 group-hover:opacity-100"
                 >
                     {props.data.map((data, index) => (
                         <div
@@ -72,7 +87,7 @@ export default function MagneticButtons(props: {
                                         ? 'start'
                                         : 'end',
                             }}
-                            className="flex items-center text-xs h-11 m-1.5 p-1.5 text-background font-semibold w-min"
+                            className="flex items-center text-xs h-11 m-1.5 p-1.5 text-foreground font-semibold w-min"
                         >
                             {data.name}
                         </div>
