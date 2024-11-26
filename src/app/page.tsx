@@ -14,7 +14,7 @@ import {
     TooltipContent,
     TooltipTrigger,
 } from '@/components/ui/tooltip'
-import LoadingImage from '@/components/loading-image'
+import LoadingMedia from '@/components/loading-media'
 
 export default function Home() {
     const introRef = useRef<HTMLDivElement>(null)
@@ -82,7 +82,7 @@ export default function Home() {
                         </div>
                     </div>
                     {/* Consultation */}
-                    <div className="py-8 md:py-16 bg-background sticky top-0 w-full flex items-center justify-center z-[1]">
+                    <div className="py-8 md:py-16 bg-background sticky top-0 w-full flex items-center justify-center z-10">
                         <Button
                             className={`transition-all interpolate-size w-min [interpolate-size:allow-keywords] duration-500 [transition-timing-function:cubic-bezier(0.32,0,0.67,0)] ${
                                 above && 'w-full'
@@ -149,8 +149,9 @@ export default function Home() {
                                     {/* Images */}
                                     {project.media.map((media) => (
                                         <div className="w-full aspect-video rounded-[16px] md:rounded-[22px] border border-300 overflow-hidden">
-                                            <LoadingImage
-                                                src={media.image}
+                                            <LoadingMedia
+                                                type={media.type}
+                                                src={media.src}
                                                 alt={media.alt}
                                             />
                                         </div>
@@ -176,7 +177,10 @@ export default function Home() {
                                             {project.tools?.map((tool) => (
                                                 <Tooltip>
                                                     <TooltipTrigger className="w-4 h-4 md:w-5 md:h-5 overflow-hidden">
-                                                        <a href={tool.url}>
+                                                        <a
+                                                            target="_blank"
+                                                            href={tool.url}
+                                                        >
                                                             <Image
                                                                 src={tool.icon}
                                                                 alt={tool.name}
@@ -199,7 +203,7 @@ export default function Home() {
                     {/* Contact */}
                     <div className="flex flex-col gap-6 h-min w-full mt-14">
                         <h2 className="px-3 text-sm">Contact Form</h2>
-                        <div className="bg-200 h-96 w-full rounded-[16px] md:rounded-[22px] "></div>
+                        <div className="bg-200 h-[400px] w-full rounded-[16px] md:rounded-[22px] "></div>
                     </div>
                 </div>
                 {/* Right */}

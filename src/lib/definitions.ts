@@ -21,6 +21,8 @@ import BricksIcon from '../../public/tools/bricks-logo.svg'
 import NextJSIcon from '../../public/tools/nextjs.svg'
 import React from '../../public/tools/react.svg'
 import TypescriptIcon from '../../public/tools/typescript.svg'
+import IllustratorIcon from '../../public/tools/illustrator.svg'
+import AfterEffectsIcon from '../../public/tools/aftereffects.svg'
 
 // Positive Media
 import ErrorPage from '../../public/positive media/404.png'
@@ -28,9 +30,15 @@ import AllPage from '../../public/positive media/all.png'
 import HomePage from '../../public/positive media/home.png'
 
 // Get The Memo
-import One from '../../public/get the memo/1.png'
-import Two from '../../public/get the memo/2.png'
-import Three from '../../public/get the memo/3.png'
+import GTM1 from '../../public/get the memo/1.png'
+import GTM2 from '../../public/get the memo/2.png'
+import GTM3 from '../../public/get the memo/3.png'
+
+// Mustard Leadership
+import ML1 from '../../public/mustard/1.png'
+import ML2 from '../../public/mustard/2.png'
+import ML4 from '../../public/mustard/4.png'
+import { StaticImageData } from 'next/image'
 
 export const socials = [
     {
@@ -134,13 +142,29 @@ export const tools = [
     },
 ]
 
-export const projects = [
+type ProjectType = {
+    name: string
+    media: {
+        type: 'image' | 'video'
+        src: string | StaticImageData
+        alt: string
+    }[]
+    types: { name: string; background: string }[]
+    tools: { icon: string | StaticImageData; name: string; url: string }[]
+    url: string
+}
+
+export const projects: ProjectType[] = [
     {
         name: 'Positive Media',
         media: [
-            { image: HomePage, alt: 'Positive Media Homepage' },
-            { image: AllPage, alt: 'Positive Media Pages Showcase' },
-            { image: ErrorPage, alt: 'Positive Media Error Page' },
+            { type: 'image', src: HomePage, alt: 'Positive Media Homepage' },
+            {
+                type: 'image',
+                src: AllPage,
+                alt: 'Positive Media Pages Showcase',
+            },
+            { type: 'image', src: ErrorPage, alt: 'Positive Media Error Page' },
         ],
         types: [
             { name: 'UI/UX', background: 'rgba(37,99,235,.15)' },
@@ -168,9 +192,9 @@ export const projects = [
     {
         name: 'Get The Memo',
         media: [
-            { image: One, alt: 'Get The Memo Dark' },
-            { image: Two, alt: 'Get The Memo Light' },
-            { image: Three, alt: 'Get The Memo Letters' },
+            { type: 'image', src: GTM1, alt: 'Get The Memo Dark' },
+            { type: 'image', src: GTM2, alt: 'Get The Memo Light' },
+            { type: 'image', src: GTM3, alt: 'Get The Memo Letters' },
         ],
         types: [
             { name: 'UI/UX', background: 'rgba(37,99,235,.15)' },
@@ -184,7 +208,7 @@ export const projects = [
             },
             {
                 icon: React,
-                name: 'Wordpress',
+                name: 'React',
                 url: 'https://react.dev/',
             },
             {
@@ -196,12 +220,37 @@ export const projects = [
         url: 'https://getthememo.app/memo',
     },
     {
-        name: 'Mustard Leadership',
+        name: 'Mustard Scools',
         media: [
-            { image: '', alt: '' },
-            { image: '', alt: '' },
-            { image: '', alt: '' },
+            { type: 'image', src: ML1, alt: 'Mustard Leadership Logo' },
+            {
+                type: 'image',
+                src: ML2,
+                alt: 'Mustard Leadership Brand Colours',
+            },
+            {
+                type: 'video',
+                src: '/mustard/3.mp4',
+                alt: 'Mustard Leadership Logo Animation',
+            },
+            { type: 'image', src: ML4, alt: 'Mustard Leadership Concepts' },
         ],
-        url: 'https://positivemedia.com.au/',
+        types: [
+            { name: 'Branding', background: 'rgba(22,163,74,.15)' },
+            { name: 'Motion', background: 'rgba(79,70,229,.15)' },
+        ],
+        tools: [
+            {
+                icon: IllustratorIcon,
+                name: 'Adobe Illustrator',
+                url: 'https://www.adobe.com/au/products/illustrator.html',
+            },
+            {
+                icon: AfterEffectsIcon,
+                name: 'Adobe After Effects',
+                url: 'https://www.adobe.com/au/products/aftereffects.html',
+            },
+        ],
+        url: 'https://www.mustard.org.au/',
     },
 ]
