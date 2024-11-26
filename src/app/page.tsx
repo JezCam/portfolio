@@ -14,6 +14,7 @@ import {
     TooltipContent,
     TooltipTrigger,
 } from '@/components/ui/tooltip'
+import LoadingImage from '@/components/loading-image'
 
 export default function Home() {
     const introRef = useRef<HTMLDivElement>(null)
@@ -148,7 +149,7 @@ export default function Home() {
                                     {/* Images */}
                                     {project.media.map((media) => (
                                         <div className="w-full aspect-video rounded-[16px] md:rounded-[22px] border border-300 overflow-hidden">
-                                            <Image
+                                            <LoadingImage
                                                 src={media.image}
                                                 alt={media.alt}
                                             />
