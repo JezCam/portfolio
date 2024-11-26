@@ -138,7 +138,7 @@ export default function Home() {
                                                     ).toString() + 'px',
                                                 '--desktop-top':
                                                     (
-                                                        -240 -
+                                                        -238 -
                                                         index * 45
                                                     ).toString() + 'px',
                                             } as React.CSSProperties
