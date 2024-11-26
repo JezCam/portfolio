@@ -31,13 +31,11 @@ const moon =
 const paths = [sun, moon]
 
 export default function ThemeToggle() {
-    const { setTheme, systemTheme, resolvedTheme, theme } = useTheme()
+    const { setTheme, theme } = useTheme()
     const ref = useRef<HTMLButtonElement>(null)
 
     const controls = useAnimation()
-    const [pathIndex, setPathIndex] = useState<number>(
-        resolvedTheme === 'dark' ? 0 : 1
-    )
+    const [pathIndex, setPathIndex] = useState<number>(theme === 'dark' ? 0 : 1)
     const progress = useMotionValue(pathIndex)
 
     const [complete, setComplete] = useState<boolean>(true)
@@ -47,13 +45,6 @@ export default function ThemeToggle() {
         mixer: (a, b) => interpolate(a, b, { maxSegmentLength: 1 }),
     })
 
-    const handleClick = () => {
-        const newPathIndex = 1 - pathIndex
-        controls.start(newPathIndex.toString())
-        setComplete(false)
-        setPathIndex(newPathIndex)
-    }
-
     const handleMouseEnter = () => {
         complete && controls.start(pathIndex.toString() + 'hover')
     }
@@ -61,17 +52,8 @@ export default function ThemeToggle() {
         complete && controls.start(pathIndex.toString())
     }
 
-    const switchTheme = async (newTheme: string) => {
-        if (newTheme === 'system') {
-            if (theme === 'system') return
-            if (theme === systemTheme) {
-                setTheme('system')
-                return
-            }
-        } else if (newTheme === resolvedTheme) {
-            setTheme(newTheme)
-            return
-        }
+    const switchTheme = async () => {
+        const newTheme = theme === 'light' ? 'dark' : 'light'
         /**
          * Return early if View Transition API is not supported
          * or user prefers reduced motion
@@ -128,196 +110,155 @@ export default function ThemeToggle() {
     }, [pathIndex])
 
     useEffect(() => {
-        if (resolvedTheme === 'dark') {
+        if (theme === 'dark') {
             controls.start('0')
             setPathIndex(0)
         } else {
             controls.start('1')
             setPathIndex(1)
         }
-    }, [resolvedTheme])
+    }, [theme])
 
     return (
-        <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-                <Button
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
-                    onClick={handleClick}
-                    className="rounded-full w-9 h-9 md:w-11 md:h-11 [&_svg]:size-4 md:[&_svg]:size-5"
-                    variant="outline"
-                    size="icon"
-                    ref={ref}
+        <Button
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            onClick={() => switchTheme()}
+            className="rounded-full w-9 h-9 md:w-11 md:h-11 [&_svg]:size-4 md:[&_svg]:size-5"
+            variant="outline"
+            size="icon"
+            ref={ref}
+        >
+            {theme && (
+                <motion.svg
+                    stroke="var(--600)"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    viewBox="0 0 22 22"
+                    xmlns="http://www.w3.org/2000/svg"
+                    animate={controls}
+                    variants={{
+                        '0': { rotate: 0, scale: 1, y: 0, x: 0 },
+                        '0hover': { rotate: 0, scale: 1, y: 0, x: 0 },
+                        '1': { rotate: 0, scale: 1, y: 1, x: 1 },
+                        '1hover': {
+                            rotate: -15,
+                            scale: 0.85,
+                            y: 1,
+                            x: 1,
+                        },
+                    }}
+                    transition={{
+                        duration: 0.2,
+                        ease: 'easeInOut',
+                    }}
                 >
-                    {resolvedTheme && (
-                        <motion.svg
-                            stroke="var(--600)"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            viewBox="0 0 22 22"
-                            xmlns="http://www.w3.org/2000/svg"
+                    {/* sun and moon body */}
+                    <motion.path
+                        stroke="var(--600)"
+                        fill="none"
+                        d={path}
+                        animate={controls}
+                        variants={{
+                            '0': { scale: 1 },
+                            '0hover': { scale: 0.8 },
+                            '1': { scale: 1 },
+                            '1hover': { scale: 1 },
+                        }}
+                        transition={{
+                            duration: 0.2,
+                            ease: 'easeInOut',
+                        }}
+                    />
+                    {[
+                        'M11,3V1',
+                        'M16.66,5.34l1.41-1.41',
+                        'M19,11h2',
+                        'M16.66,16.66l1.41,1.41',
+                        'M11,19v2',
+                        'M5.34,16.66l-1.41,1.41',
+                        'M3,11H1',
+                        'M5.34,5.34l-1.41-1.41',
+                    ].map((ray, index) => (
+                        <motion.path
+                            key={index}
+                            d={ray}
                             animate={controls}
+                            onAnimationComplete={() => {
+                                if (index === 7) setComplete(true)
+                            }}
                             variants={{
-                                '0': { rotate: 0, scale: 1, y: 0, x: 0 },
-                                '0hover': { rotate: 0, scale: 1, y: 0, x: 0 },
-                                '1': { rotate: 0, scale: 1, y: 1, x: 1 },
-                                '1hover': {
-                                    rotate: -15,
-                                    scale: 0.85,
-                                    y: 1,
-                                    x: 1,
+                                '0': (i: number) => {
+                                    return {
+                                        pathLength: 1,
+                                        scale: 1,
+                                        x: 0,
+                                        y: 0,
+                                        transition: {
+                                            duration: 0.2,
+                                            ease: 'easeInOut',
+                                            delay:
+                                                pathIndex === 1 ? i * 0.06 : 0,
+                                        },
+                                    }
+                                },
+                                '0hover': {
+                                    pathLength: 0.1,
+                                    x: [0, -0.5, -1, -0.5, 0, 0.5, 1, 0.5][
+                                        index
+                                    ],
+                                    y: [1, 0.5, 0, -0.5, -1, -0.5, 0, 0.5][
+                                        index
+                                    ],
+                                    transition: {
+                                        duration: 0.2,
+                                        ease: 'easeInOut',
+                                    },
+                                },
+                                '1': {
+                                    pathLength: 0.1,
+                                    scale: 0,
+                                    x: [0, -1, -2, -1, 0, 1, 2, 1][index],
+                                    y: [2, 1, 0, -1, -2, -1, 0, 1][index],
+                                    transition: {
+                                        ease: 'easeInOut',
+                                        duration: 0.1,
+                                    },
                                 },
                             }}
-                            transition={{
-                                duration: 0.2,
-                                ease: 'easeInOut',
+                            custom={index + 1}
+                        />
+                    ))}
+                    {['M18,1v4', 'M20,3h-4'].map((star, index) => (
+                        <motion.path
+                            key={index}
+                            d={star}
+                            animate={controls}
+                            variants={{
+                                '0': {
+                                    scale: 0,
+                                    pathLength: 0,
+                                    transition: {
+                                        ease: 'easeInOut',
+                                        duration: 0.2,
+                                    },
+                                },
+                                '1': {
+                                    scale: 1,
+                                    pathLength: 1,
+                                    transition: {
+                                        ease: 'easeInOut',
+                                        duration: 0.2,
+                                        delay: 0.2,
+                                    },
+                                },
                             }}
-                        >
-                            {/* sun and moon body */}
-                            <motion.path
-                                stroke="var(--600)"
-                                fill="none"
-                                d={path}
-                                animate={controls}
-                                variants={{
-                                    '0': { scale: 1 },
-                                    '0hover': { scale: 0.8 },
-                                    '1': { scale: 1 },
-                                    '1hover': { scale: 1 },
-                                }}
-                                transition={{
-                                    duration: 0.2,
-                                    ease: 'easeInOut',
-                                }}
-                            />
-                            {[
-                                'M11,3V1',
-                                'M16.66,5.34l1.41-1.41',
-                                'M19,11h2',
-                                'M16.66,16.66l1.41,1.41',
-                                'M11,19v2',
-                                'M5.34,16.66l-1.41,1.41',
-                                'M3,11H1',
-                                'M5.34,5.34l-1.41-1.41',
-                            ].map((ray, index) => (
-                                <motion.path
-                                    key={index}
-                                    d={ray}
-                                    animate={controls}
-                                    onAnimationComplete={() => {
-                                        if (index === 7) setComplete(true)
-                                    }}
-                                    variants={{
-                                        '0': (i: number) => {
-                                            return {
-                                                pathLength: 1,
-                                                scale: 1,
-                                                x: 0,
-                                                y: 0,
-                                                transition: {
-                                                    duration: 0.2,
-                                                    ease: 'easeInOut',
-                                                    delay:
-                                                        pathIndex === 1
-                                                            ? i * 0.06
-                                                            : 0,
-                                                },
-                                            }
-                                        },
-                                        '0hover': {
-                                            pathLength: 0.1,
-                                            x: [
-                                                0, -0.5, -1, -0.5, 0, 0.5, 1,
-                                                0.5,
-                                            ][index],
-                                            y: [
-                                                1, 0.5, 0, -0.5, -1, -0.5, 0,
-                                                0.5,
-                                            ][index],
-                                            transition: {
-                                                duration: 0.2,
-                                                ease: 'easeInOut',
-                                            },
-                                        },
-                                        '1': {
-                                            pathLength: 0.1,
-                                            scale: 0,
-                                            x: [0, -1, -2, -1, 0, 1, 2, 1][
-                                                index
-                                            ],
-                                            y: [2, 1, 0, -1, -2, -1, 0, 1][
-                                                index
-                                            ],
-                                            transition: {
-                                                ease: 'easeInOut',
-                                                duration: 0.1,
-                                            },
-                                        },
-                                    }}
-                                    custom={index + 1}
-                                />
-                            ))}
-                            {['M18,1v4', 'M20,3h-4'].map((star, index) => (
-                                <motion.path
-                                    key={index}
-                                    d={star}
-                                    animate={controls}
-                                    variants={{
-                                        '0': {
-                                            scale: 0,
-                                            pathLength: 0,
-                                            transition: {
-                                                ease: 'easeInOut',
-                                                duration: 0.2,
-                                            },
-                                        },
-                                        '1': {
-                                            scale: 1,
-                                            pathLength: 1,
-                                            transition: {
-                                                ease: 'easeInOut',
-                                                duration: 0.2,
-                                                delay: 0.2,
-                                            },
-                                        },
-                                    }}
-                                />
-                            ))}
-                        </motion.svg>
-                    )}
-                    <span className="sr-only">Toggle theme</span>
-                </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="font-[400] !text-sm" align="end">
-                <DropdownMenuItem onClick={() => switchTheme('light')}>
-                    <Image
-                        src={UiLight}
-                        alt="light"
-                        width={35}
-                        className="rounded-sm border border-foreground/20"
-                    />
-                    Light
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => switchTheme('dark')}>
-                    <Image
-                        src={UiDark}
-                        alt="light"
-                        width={35}
-                        className="rounded-sm border border-foreground/20"
-                    />
-                    Dark
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => switchTheme('system')}>
-                    <Image
-                        src={UiSystem}
-                        alt="light"
-                        width={35}
-                        className="rounded-sm border border-foreground/20"
-                    />
-                    System
-                </DropdownMenuItem>
-            </DropdownMenuContent>
-        </DropdownMenu>
+                        />
+                    ))}
+                </motion.svg>
+            )}
+            <span className="sr-only">Toggle theme</span>
+        </Button>
     )
 }
