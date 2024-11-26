@@ -83,13 +83,14 @@ export default function Home() {
                     </div>
                     {/* Consultation */}
                     <div className="py-8 pt-[33px] md:py-16 bg-background sticky top-0 mt-1 w-full flex items-center justify-center z-10">
-                        <Button
-                            className={`transition-all interpolate-size w-min [interpolate-size:allow-keywords] duration-500 [transition-timing-function:cubic-bezier(0.32,0,0.67,0)] ${
-                                above && 'w-full'
-                            } rounded-full text-xs md:text-sm h-9 md:h-11 px-6 `}
+                        <a
+                            target="_blank"
+                            style={{ width: above ? '100%' : 'fit-content' }}
+                            href="https://cal.com/jeremycameron/15min"
+                            className="bg-foreground text-background whitespace-nowrap flex justify-center items-center transition-all interpolate-size [interpolate-size:allow-keywords] duration-500 [transition-timing-function:cubic-bezier(0.32,0,0.67,0)] rounded-full text-xs md:text-sm h-9 md:h-11 px-6"
                         >
                             Free consultation
-                        </Button>
+                        </a>
                     </div>
                     {/* Portfolio */}
                     <div className="flex flex-col gap-4 md:gap-6 w-full relative">
@@ -166,7 +167,7 @@ export default function Home() {
                                                     background: type.background,
                                                 }}
                                                 key={index}
-                                                className="text-[10px] md:text-xs py-1 px-2 rounded-full font-semibold text-foreground"
+                                                className="text-[10px] md:text-xs py-1 px-2 rounded-full text-foreground"
                                             >
                                                 {type.name}
                                             </h2>

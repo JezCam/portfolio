@@ -141,12 +141,12 @@ export default function ThemeToggle() {
                     variants={{
                         '0': { rotate: 0, scale: 1, y: 0, x: 0 },
                         '0hover': { rotate: 0, scale: 1, y: 0, x: 0 },
-                        '1': { rotate: 0, scale: 1, y: 1, x: 1 },
+                        '1': { rotate: 0, scale: 1, y: 0.5, x: 0.5 },
                         '1hover': {
                             rotate: -15,
                             scale: 0.85,
-                            y: 1,
-                            x: 1,
+                            y: 0.5,
+                            x: 0.5,
                         },
                     }}
                     transition={{
