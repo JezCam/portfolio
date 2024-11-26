@@ -82,7 +82,7 @@ export default function Home() {
                         </div>
                     </div>
                     {/* Consultation */}
-                    <div className="py-8 pt-[33px] md:py-16 bg-background sticky top-[-1] w-full flex items-center justify-center z-10">
+                    <div className="py-8 pt-[33px] md:py-16 bg-background sticky top-0 mt-1 w-full flex items-center justify-center z-10">
                         <Button
                             className={`transition-all interpolate-size w-min [interpolate-size:allow-keywords] duration-500 [transition-timing-function:cubic-bezier(0.32,0,0.67,0)] ${
                                 above && 'w-full'
