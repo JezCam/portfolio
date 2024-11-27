@@ -82,7 +82,7 @@ export default function Home() {
                         </div>
                     </div>
                     {/* Consultation */}
-                    <div className="py-8 pt-[33px] md:py-16 bg-background sticky top-0 mt-1 w-full flex items-center justify-center z-10">
+                    <div className="py-8 pt-[33px] md:py-16 bg-background sticky top-0 mt-1 w-full flex items-center justify-center z-[9]">
                         <a
                             target="_blank"
                             style={{ width: above ? '100%' : 'fit-content' }}
