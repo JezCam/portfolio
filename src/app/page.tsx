@@ -5,7 +5,6 @@ import Image from 'next/image'
 import Me from '../../public/Me.png'
 import ThemeToggle from '@/components/theme-toggle'
 import { ArrowUpRight, Mail, MapPin } from 'lucide-react'
-import { Button } from '@/components/ui/button'
 import MagneticButtons from '@/components/magnetic-buttons'
 import React, { useEffect, useRef, useState } from 'react'
 import {
@@ -15,6 +14,7 @@ import {
     TooltipTrigger,
 } from '@/components/ui/tooltip'
 import LoadingMedia from '@/components/loading-media'
+import ContactForm from '@/components/contact-form'
 
 export default function Home() {
     const introRef = useRef<HTMLDivElement>(null)
@@ -43,11 +43,11 @@ export default function Home() {
                                 alt="Jeremy Cameron"
                             />
                         </div>
-                        <p className="text-xs">Me</p>
+                        <p className="text-xs text-600">Me</p>
                     </div>
                     {/* Socials */}
                     <div className="flex flex-col gap-1.5 items-center">
-                        <p className="text-xs">Socials</p>
+                        <p className="text-xs text-600">Socials</p>
                         <MagneticButtons data={socials} direction="left" />
                     </div>
                 </div>
@@ -87,13 +87,13 @@ export default function Home() {
                             target="_blank"
                             style={{ width: above ? '100%' : 'fit-content' }}
                             href="https://cal.com/jeremycameron/15min"
-                            className="bg-foreground text-background whitespace-nowrap flex justify-center items-center transition-all interpolate-size [interpolate-size:allow-keywords] duration-500 [transition-timing-function:cubic-bezier(0.32,0,0.67,0)] rounded-full text-xs md:text-sm h-9 md:h-11 px-6"
+                            className="bg-foreground font-semibold text-background whitespace-nowrap flex justify-center items-center transition-all interpolate-size [interpolate-size:allow-keywords] duration-500 [transition-timing-function:cubic-bezier(0.32,0,0.67,0)] rounded-full text-xs md:text-sm h-9 md:h-11 px-6"
                         >
                             Free consultation
                         </a>
                     </div>
-                    {/* Portfolio */}
-                    <div className="flex flex-col gap-4 md:gap-6 w-full relative">
+                    {/* Portfolio and Contact */}
+                    <div className="flex flex-col items-center gap-4 md:gap-6 w-full relative">
                         {/* Project */}
                         {projects.map((project, index) => (
                             <React.Fragment key={index}>
@@ -200,11 +200,13 @@ export default function Home() {
                                 <div className="flex h-[1px] bg-200 m"></div> */}
                             </React.Fragment>
                         ))}
-                    </div>
-                    {/* Contact */}
-                    <div className="flex flex-col gap-6 h-min w-full mt-14">
-                        <h2 className="px-3 text-sm">Contact Form</h2>
-                        <div className="bg-200 h-[400px] w-full rounded-[16px] md:rounded-[22px] "></div>
+                        {/* Contact
+                        <div className="flex flex-col gap-8 md:gap-12 h-min max-w-[500px] w-full mt-14 mb-14">
+                            <h2 className="px-3 text-xs md:text-sm font-semibold border-b-[1px] border-300 py-3">
+                                Get In Touch
+                            </h2>
+                            <ContactForm />
+                        </div> */}
                     </div>
                 </div>
                 {/* Right */}
@@ -212,11 +214,11 @@ export default function Home() {
                     {/* Theme */}
                     <div className="flex flex-col gap-3 items-center">
                         <ThemeToggle />
-                        <p className="text-xs">Theme</p>
+                        <p className="text-xs text-600">Theme</p>
                     </div>
                     {/* Tools */}
                     <div className="flex flex-col gap-1.5 items-center">
-                        <p className="text-xs">Tools</p>
+                        <p className="text-xs text-600">Tools</p>
                         <MagneticButtons data={tools} direction="right" />
                     </div>
                 </div>
