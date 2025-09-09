@@ -217,7 +217,7 @@ export const projects: ProjectType[] = [
                 url: 'https://nextjs.org/',
             },
         ],
-        url: 'https://getthememo.app/memo',
+        url: 'https://get-the-memo-v6.vercel.app/',
     },
     {
         name: 'Mustard Scools',

@@ -4,7 +4,7 @@ import { socials, tools, projects } from '@/lib/definitions'
 import Image from 'next/image'
 import Me from '../../public/Me.png'
 import ThemeToggle from '@/components/theme-toggle'
-import { ArrowUpRight, Mail, MapPin } from 'lucide-react'
+import { ArrowUpRight, GraduationCap, Mail, MapPin } from 'lucide-react'
 import MagneticButtons from '@/components/magnetic-buttons'
 import React, { useEffect, useRef, useState } from 'react'
 import {
@@ -79,6 +79,16 @@ export default function Home() {
                                 <Mail className="text-foreground" size={14} />
                                 jeremy@cameron.org.au
                             </a>
+                            <div className="flex items-center gap-1.5">
+                                <GraduationCap
+                                    className="text-foreground"
+                                    size={14}
+                                />
+                                Computer Science,
+                                <span className="text-foreground font-semibold">
+                                    Monash University
+                                </span>
+                            </div>
                         </div>
                     </div>
                     {/* Consultation */}
