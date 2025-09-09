@@ -79,7 +79,10 @@ export default function Home() {
                                 <Mail className="text-foreground" size={14} />
                                 jeremy@cameron.org.au
                             </a>
-                            <div className="flex items-center gap-1.5">
+                            <a
+                                className="flex items-center gap-1.5"
+                                href="https://handbook.monash.edu/current/courses/C2001"
+                            >
                                 <GraduationCap
                                     className="text-foreground"
                                     size={14}
@@ -88,7 +91,7 @@ export default function Home() {
                                 <span className="text-foreground font-semibold">
                                     Monash University
                                 </span>
-                            </div>
+                            </a>
                         </div>
                     </div>
                     {/* Consultation */}
